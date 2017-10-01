@@ -103,6 +103,37 @@ const deviceManager = (base) => {
       method: 'POST',
       url: `${base}/typeof`,
       data: deviceOverview
+    }),
+    /**
+    * @summary Register a new device based on information from ProtocolManager and device type
+    * @name create
+    * @public
+    * @function
+    * @memberof agile.deviceManager
+    * @param {Object} deviceOverview
+    * @param {string} type
+    * @fulfil {Object} - device
+    * @returns {Promise}
+    * @example
+    * const deviceOverview = {
+    *   "name": "CC2650 SensorTag",
+    *   "protocol": "iot.agile.protocol.BLE",
+    *   "id": "B0:B4:48:BD:10:85",
+    *   "status": "CONNECTED"
+    * };
+    * const type = "TI SensorTag";
+    *
+    * agile.deviceManager.register(deviceOverview, type).then(function(newDevice) {
+    *  console.log(newDevice);
+    * });
+    **/
+    register: (deviceOverview, type) => axios({
+      method: 'POST',
+      url: `${base}/register`,
+      data: {
+        overview: deviceOverview,
+        type: type
+      }
     })
   });
 };

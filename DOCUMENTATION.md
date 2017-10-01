@@ -37,6 +37,7 @@ var agile = require('agile-sdk')({
         * [.get([deviceId])](#agile.deviceManager.get) ⇒ <code>Promise</code>
         * [.delete(deviceId)](#agile.deviceManager.delete) ⇒ <code>Promise</code>
         * [.create(deviceOverview, type)](#agile.deviceManager.create) ⇒ <code>Promise</code>
+        * [.register(deviceOverview, type)](#agile.deviceManager.register) ⇒ <code>Promise</code>
         * [.typeof(deviceOverview)](#agile.deviceManager.typeof) ⇒ <code>Promise</code>
     * [.device](#agile.device) : <code>object</code>
         * [.status(deviceId)](#agile.device.status) ⇒ <code>Promise</code>
@@ -324,6 +325,33 @@ const deviceOverview = {
 const type = "TI SensorTag";
 
 agile.deviceManager.create(deviceOverview, type).then(function(newDevice) {
+ console.log(newDevice);
+});
+```
+<a name="agile.deviceManager.register"></a>
+
+#### deviceManager.register(deviceOverview, type) ⇒ <code>Promise</code>
+**Kind**: static method of [<code>deviceManager</code>](#agile.deviceManager)  
+**Summary**: Register a new device based on information from ProtocolManager and device type  
+**Access**: public  
+**Fulfil**: <code>Object</code> - device  
+
+| Param | Type |
+| --- | --- |
+| deviceOverview | <code>Object</code> | 
+| type | <code>string</code> | 
+
+**Example**  
+```js
+const deviceOverview = {
+  "name": "CC2650 SensorTag",
+  "protocol": "iot.agile.protocol.BLE",
+  "id": "B0:B4:48:BD:10:85",
+  "status": "CONNECTED"
+};
+const type = "TI SensorTag";
+
+agile.deviceManager.register(deviceOverview, type).then(function(newDevice) {
  console.log(newDevice);
 });
 ```
